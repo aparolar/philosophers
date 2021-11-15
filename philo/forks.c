@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:51:05 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:00:29 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void    take_forks(t_philo *philo)
 {
+	if (philo->position % 2)
+		usleep(200);
 	pthread_mutex_lock(&philo->args->forks[philo->lfork]);
 	show_status(philo, FORK);
 	pthread_mutex_lock(&philo->args->forks[philo->rfork]);

@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/10 10:29:25 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:54:48 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,21 @@ void    init_philo(t_philo *philo)
 	philo->rfork = (philo->lfork + 1) % philo->args->n_philos;
 	philo->eat_count = 0;
 	philo->max_eat_count = philo->args->must_eat_count;
+	philo->start = philo->args->start;
 	philo->last_eat = philo->args->start;
 	philo->limit = philo->last_eat + philo->args->dead_time;
-	ret = pthread_create(&tid, 0, philoso, (void *)philo);
-	if (ret)
-		printf("No se ha podido crear el hilo %d\n", philo->position);
-	pthread_detach(tid);
+	if (philo->lfork != philo->rfork)
+	{
+		ret = pthread_create(&tid, 0, philoso, (void *)philo);
+		if (ret)
+			printf("No se ha podido crear el hilo %d\n", philo->position);
+		pthread_detach(tid);
+	}
+	else
+	{
+		show_status(philo, DIED);
+		philo->args->dead++;
+	}
 }
 
 void    *philoso(void *args)

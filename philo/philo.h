@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/09 14:22:05 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:02:33 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_philo
 	int                 is_eating;
 	__u_long            limit;
 	__u_long            last_eat;
+	__u_long			start;
 	int                 lfork;
 	int                 rfork;
 	int                 eat_count;

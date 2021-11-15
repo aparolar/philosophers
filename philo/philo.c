@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/10 10:30:20 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:14:23 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	start(t_philo_args *philo)
 	philo->philos = philos;
 	philo->dead = 0;
 	philo->start = get_time();
+	pthread_mutex_init(&philo->write, 0);
 	while (i < philo->n_philos)
 	{
 		pthread_mutex_init(&philo->forks[i], 0);

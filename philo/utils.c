@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 12:30:32 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/09 17:54:33 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:03:27 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void    show_status(t_philo *philo, char *status)
 {
 	__u_long	t;
 
-	t = get_time() - philo->args->start;
+	//pthread_mutex_lock(&philo->args->write);
+	t = get_time() - philo->start;
+	//pthread_mutex_unlock(&philo->args->write);
 	printf("%lu %d %s\n", t, philo->position + 1, status);
 }
 

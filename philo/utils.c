@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 12:30:32 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/10 11:03:27 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/16 22:44:10 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ __u_long	get_time()
 	struct timeval time_now;
 	
 	gettimeofday(&time_now, 0);
-	return (time_now.tv_sec * 1000000 + time_now.tv_usec);
+	return (time_now.tv_sec * 1000 + time_now.tv_usec / 1000);
 }

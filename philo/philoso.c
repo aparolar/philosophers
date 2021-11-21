@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/21 17:05:07 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/21 22:07:38 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void    init_philo(t_philo *philo)
 		ret = pthread_create(&philo->thread_id, 0, philoso, (void *)philo);
 		if (ret)
 			printf("No se ha podido crear el hilo %d\n", philo->position);
-		pthread_detach(philo->thread_id);
 	}
 	else
 	{
@@ -44,7 +43,7 @@ void    *philoso(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	while (!philo->args->dead)
+	while (1)
 	{
 		take_forks(philo);
 		doing_eat(philo);
@@ -57,7 +56,8 @@ void    *philoso(void *args)
 			pthread_mutex_unlock(&philo->args->write);
 			break ;
 		}
-		filo_death(philo);
+		if (filo_death(philo))
+			break ;
 	}
 	return (0);
 }

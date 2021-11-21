@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/21 17:06:52 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/21 22:06:58 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ static int	start(t_philo_args *philo)
 		init_philo(&philos[i]);
 		i++;
 	}
-	while (philo->dead < philo->n_philos) {
+	while (1) {
 		pthread_mutex_lock(&philo->write);
 		if (philo->dead > 0 || philo->eated == philo->n_philos)
-		{	pthread_mutex_unlock(&philo->write);
+		{	
+			pthread_mutex_unlock(&philo->write);
 			break ;
 		}
+//		else
 		pthread_mutex_unlock(&philo->write);
 	}
 	printf("Salimos\n");

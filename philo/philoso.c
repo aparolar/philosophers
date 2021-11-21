@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/15 11:54:48 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:05:07 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void    init_philo(t_philo *philo)
 	philo->eat_count = 0;
 	philo->max_eat_count = philo->args->must_eat_count;
 	philo->start = philo->args->start;
-	philo->last_eat = philo->args->start;
+	philo->last_eat = get_time();
 	philo->limit = philo->last_eat + philo->args->dead_time;
 	if (philo->lfork != philo->rfork)
 	{
-		ret = pthread_create(&tid, 0, philoso, (void *)philo);
+		ret = pthread_create(&philo->thread_id, 0, philoso, (void *)philo);
 		if (ret)
 			printf("No se ha podido crear el hilo %d\n", philo->position);
-		pthread_detach(tid);
+		pthread_detach(philo->thread_id);
 	}
 	else
 	{
@@ -44,30 +44,20 @@ void    *philoso(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	while (1)
+	while (!philo->args->dead)
 	{
 		take_forks(philo);
 		doing_eat(philo);
 		doing_sleep(philo);
-		doing_think(philo);		
-		if (philo->eat_count > philo->max_eat_count)
+		doing_think(philo);
+		if (philo->max_eat_count > 0 && philo->eat_count >= philo->max_eat_count)
 		{		
-			//printf("han comido lo suficiente\n");
 			pthread_mutex_lock(&philo->args->write);
-			philo->args->dead++;
+			philo->args->eated++;
 			pthread_mutex_unlock(&philo->args->write);
 			break ;
 		}
-		if (filo_death(philo))
-		{
-			//printf("Han muerto\n");
-			pthread_mutex_lock(&philo->args->write);
-			if (philo->args->dead > 0)
-				show_status(philo, DIED);
-			else
-				philo->args->dead++;
-			pthread_mutex_unlock(&philo->args->write);
-			break ;
-		}
+		filo_death(philo);
 	}
+	return (0);
 }

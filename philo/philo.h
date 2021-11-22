@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/21 13:03:35 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/23 00:00:38 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philo_args
 	struct s_philo	*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write;
-	pthread_mutex_t	somebody_dead;
+	pthread_mutex_t meal_check;
 	int				dead;
 
 }  t_philo_args;
@@ -50,7 +50,6 @@ typedef struct s_philo_args
 typedef struct s_philo
 {
 	int                 position;
-	int                 is_eating;
 	ulong       	    limit;
 	ulong   	        last_eat;
 	ulong				start;
@@ -58,8 +57,8 @@ typedef struct s_philo
 	int                 rfork;
 	int                 eat_count;
 	int					max_eat_count;
+	int					died;
 	struct s_philo_args *args;
-	pthread_mutex_t     mutex;
 	pthread_t			thread_id;
 }   t_philo;
 
@@ -75,5 +74,13 @@ void	doing_think(t_philo *philo);
 void	show_status(t_philo *philo, char *status);
 int		filo_death(t_philo *philo);
 ulong	get_time();
+
+/*
+**  Time Functions
+*/
+
+ulong	timestamp();
+ulong	time_diff(ulong past, ulong present);
+void	cond_sleep(ulong time, t_philo_args *args);
 
 #endif

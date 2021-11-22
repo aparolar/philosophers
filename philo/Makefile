@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/11/21 13:51:36 by aparolar         ###   ########.fr        #
+#    Updated: 2021/11/22 12:18:56 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRCS		=	philo.c\
 				philoso.c\
 				forks.c\
 				utils.c\
+				time.c\
 				ft_isdigit.c\
 				ft_atoi.c\
 				

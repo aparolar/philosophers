@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/21 17:03:52 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/22 23:47:21 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int    take_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(&(philo->args->forks[philo->rfork]));
 		show_status(philo, FORK);
+		pthread_mutex_lock(&(philo->args->forks[philo->lfork]));
+		show_status(philo, FORK);
 	}
-	pthread_mutex_lock(&(philo->args->forks[philo->lfork]));
-	show_status(philo, FORK);
-	if (philo->position % 2)
+	else
 	{
+		pthread_mutex_lock(&(philo->args->forks[philo->lfork]));
+		show_status(philo, FORK);
 		pthread_mutex_lock(&(philo->args->forks[philo->rfork]));
 		show_status(philo, FORK);
 	}
@@ -38,11 +40,34 @@ void    clean_forks(t_philo *philo)
 
 int	doing_eat(t_philo *philo)
 {
+	/*
+		problemas, se pierde mucho tiempo con los mutex,
+		 intentar no usar mutex en show_status
+		 hay un lapsus de 200ms aprox con el tiempo de muerte
+		 los mutex detienen innecesariamente los hilos
+		 buscar alternativas con otras variables locales
+	*/
+	//printf("pre eat lock\n");
 	show_status(philo, EAT);
-	usleep(philo->args->eat_time * 1000);
+	//printf("pre eat %lu %d\n", time_diff(philo->last_eat, timestamp()), philo->position + 1);
+	pthread_mutex_lock(&philo->args->meal_check);
+	cond_sleep(philo->args->eat_time, philo->args);
+	philo->last_eat = timestamp();
+	pthread_mutex_unlock(&philo->args->meal_check);
 	clean_forks(philo);
-	philo->last_eat = get_time();
-	philo->limit = philo->last_eat + philo->args->dead_time * 1000;
+	//pthread_mutex_lock(&philo->args->meal_check);
+	//philo->last_eat = timestamp();
+	//pthread_mutex_unlock(&philo->args->meal_check);
+	//printf("pos eat %lu %d\n", time_diff(philo->last_eat, timestamp()), philo->position +1 );
+	//printf("pre slp %lu %d\n", time_diff(philo->last_eat, timestamp()), philo->position + 1);
+	pthread_mutex_lock(&philo->args->meal_check);
+	show_status(philo, SLEEP);    
+	cond_sleep(philo->args->sleep_time, philo->args);
+	show_status(philo, THINK);
+	pthread_mutex_unlock(&philo->args->meal_check);
+	//printf("pos slp %lu %d\n", time_diff(philo->last_eat, timestamp()), philo->position + 1);
+//	doing_think(philo);
+	//printf("endind eat\n");
 	if (philo->max_eat_count > 0)
 	{
 		philo->eat_count++;
@@ -54,11 +79,8 @@ int	doing_eat(t_philo *philo)
 
 void    doing_sleep(t_philo *philo)
 {
-	show_status(philo, SLEEP);    
-	usleep(philo->args->sleep_time * 1000);
 }
 
 void    doing_think(t_philo *philo)
 {
-	show_status(philo, THINK);
 }

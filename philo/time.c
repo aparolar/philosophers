@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:09:30 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/22 23:47:43 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:25:39 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ void    cond_sleep(ulong time, t_philo_args *args)
 {
     ulong   t;
 
-    t = timestamp();
-    while (!args->dead)
-    {
-        if (time_diff(t, timestamp()) >= time)
-            break ;
-        usleep(50);
-    }
+    t = timestamp() + time;
+    while (timestamp() < t)
+        usleep(100);
 }

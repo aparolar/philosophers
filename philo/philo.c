@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/23 00:05:11 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/11/24 03:18:59 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ static int	start(t_philo_args *philo)
 		while (--i >= 0 && !end)
 		{
 			pthread_mutex_lock(&philo->meal_check);
-			//printf("%lu > %lu\n", time_diff(philo->philos[i].last_eat, timestamp()), philo->dead_time);
-			if (time_diff(philo->philos[i].last_eat, timestamp()) > philo->dead_time)
+			if (time_diff(philo->philos[i].last_eat, timestamp()) > philo->dead_time + 100)
 			{
+				printf("%lu > %lu\n", time_diff(philo->philos[i].last_eat, timestamp()), philo->dead_time);
 				show_status(&philo->philos[i], DIED);
 				pthread_mutex_lock(&philo->write);
 				philo->dead = 1;
@@ -100,7 +100,7 @@ static int	start(t_philo_args *philo)
 			break ;
 		}*/
 			pthread_mutex_unlock(&philo->meal_check);
-			//usleep(100);
+			usleep(100);
 		}
 	}
 	printf("Salimos\n");
@@ -112,6 +112,7 @@ int	main(int argc, char **argv)
 {
 	t_philo_args	philo;
 
+	printf("%s %s %s %s\n", argv[1], argv[2], argv[3], argv[4]);
 	if (get_args(argc, argv, &philo))
 		start(&philo);
 	//system("valgrind ./philo");

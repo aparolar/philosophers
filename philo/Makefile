@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/11/22 12:18:56 by aparolar         ###   ########.fr        #
+#    Updated: 2021/12/09 11:33:27 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ SRCS		=	philo.c\
 				time.c\
 				ft_isdigit.c\
 				ft_atoi.c\
+				ft_putnbr_fd.c\
+				ft_putstr_fd.c\
+				ft_intlen.c\
 				
 OBJS		=	$(SRCS:.c=.o)
-DBGFLAGS	=	-g3 -fsanitize=thread
+DBGFLAGS	=	-g3 -fsanitize=address#thread
 FLAGS		=	#-Wall -Werror -Wextra
 CC			=	@gcc
 

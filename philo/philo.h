@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/23 00:00:38 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:55:43 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,15 @@ typedef struct s_philo
 
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
-void    *philoso();
+void    *philoso(void *args);
 void	init_philo(t_philo *philo);
 int		take_forks(t_philo *philo);
 void	clean_forks(t_philo *philo);
 int		doing_eat(t_philo *philo);
-void	doing_sleep(t_philo *philo);
-void	doing_think(t_philo *philo);
 void	show_status(t_philo *philo, char *status);
-int		filo_death(t_philo *philo);
-ulong	get_time();
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_intlen(int n);
 
 /*
 **  Time Functions

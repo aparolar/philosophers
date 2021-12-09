@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/11/24 03:18:59 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:17:59 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	initialize(t_philo_args *args)
 
 	pthread_mutex_init(&args->write, 0);
 	pthread_mutex_init(&args->meal_check, 0);
-	args->forks = malloc(sizeof(pthread_mutex_t *) * args->n_philos);
+	args->forks = malloc(sizeof(pthread_mutex_t) * args->n_philos);
 	args->philos = malloc(sizeof(t_philo) * args->n_philos);
 	args->dead = 0;
 	args->eated = 0;
@@ -55,7 +55,7 @@ static void	initialize(t_philo_args *args)
 	}
 }
 
-static void	unitialize(t_philo_args *args)
+static void	uninitialize(t_philo_args *args)
 {
 	int i;
 
@@ -71,40 +71,35 @@ static void	unitialize(t_philo_args *args)
 	free(args->forks);
 }
 
-static int	start(t_philo_args *philo)
+static int	start(t_philo_args *args)
 {
 	int			end;
-	int	i;
+	int			i;
 
-	initialize(philo);
+	initialize(args);
 	end = 0;
 	while (!end) {
-		i = philo->n_philos;
+		i = args->n_philos;
 		while (--i >= 0 && !end)
 		{
-			pthread_mutex_lock(&philo->meal_check);
-			if (time_diff(philo->philos[i].last_eat, timestamp()) > philo->dead_time + 100)
+			if (time_diff(args->philos[i].last_eat, timestamp()) > args->dead_time + 100)
 			{
-				printf("%lu > %lu\n", time_diff(philo->philos[i].last_eat, timestamp()), philo->dead_time);
-				show_status(&philo->philos[i], DIED);
-				pthread_mutex_lock(&philo->write);
-				philo->dead = 1;
+				show_status(&args->philos[i], DIED);
+				pthread_mutex_lock(&args->write);
+				args->dead = 1;
 				end = 1;
-				//break;
-				pthread_mutex_unlock(&philo->write);
+				pthread_mutex_unlock(&args->write);
 			}
-		/*
-		if (philo->dead > 0 || philo->eated == philo->n_philos)
-		{	
-			pthread_mutex_unlock(&philo->write);
-			break ;
-		}*/
-			pthread_mutex_unlock(&philo->meal_check);
+			/*
+			if (philo->dead > 0 || philo->eated == philo->n_philos)
+			{	
+				pthread_mutex_unlock(&philo->write);
+				break ;
+			}*/
 			usleep(100);
 		}
 	}
-	printf("Salimos\n");
-	unitialize(philo);
+	uninitialize(args);
 	return (0);
 }
 

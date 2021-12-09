@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/09 11:59:01 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/09 22:19:50 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	doing_eat(t_philo *philo)
 {
 	take_forks(philo);
 	show_status(philo, EAT);
-	pthread_mutex_lock(&philo->args->meal_check);
+	//pthread_mutex_lock(&philo->args->meal_check);
 	cond_sleep(philo->args->eat_time, philo->args);
 	clean_forks(philo);
 	usleep(50);
 	philo->last_eat = timestamp();
 	show_status(philo, SLEEP);
 	cond_sleep(philo->args->sleep_time, philo->args);
-	pthread_mutex_unlock(&philo->args->meal_check);
+	//pthread_mutex_unlock(&philo->args->meal_check);
 	show_status(philo, THINK);
 	if (philo->max_eat_count > 0)
 	{

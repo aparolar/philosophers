@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/09 12:17:59 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/10 06:01:18 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	initialize(t_philo_args *args)
 	int	i;
 
 	pthread_mutex_init(&args->write, 0);
-	pthread_mutex_init(&args->meal_check, 0);
 	args->forks = malloc(sizeof(pthread_mutex_t) * args->n_philos);
 	args->philos = malloc(sizeof(t_philo) * args->n_philos);
 	args->dead = 0;
@@ -66,36 +65,29 @@ static void	uninitialize(t_philo_args *args)
 	while (args->n_philos > 0 && --i >= 0)
 		pthread_mutex_destroy(&args->forks[i]);
 	pthread_mutex_destroy(&args->write);
-	pthread_mutex_destroy(&args->meal_check);
 	free(args->philos);
 	free(args->forks);
 }
 
 static int	start(t_philo_args *args)
 {
-	int			end;
 	int			i;
+	t_philo		p;
 
 	initialize(args);
-	end = 0;
-	while (!end) {
+	while (!args->dead && args->eated < args->n_philos)
+	{
 		i = args->n_philos;
-		while (--i >= 0 && !end)
+		while (--i >= 0 && !args->dead && args->eated < args->n_philos)
 		{
-			if (time_diff(args->philos[i].last_eat, timestamp()) > args->dead_time + 100)
+			p = args->philos[i];
+			if (time_diff(p.last_eat, timestamp()) > args->dead_time)
 			{
-				show_status(&args->philos[i], DIED);
+				show_status(&p, DIED);
 				pthread_mutex_lock(&args->write);
 				args->dead = 1;
-				end = 1;
 				pthread_mutex_unlock(&args->write);
 			}
-			/*
-			if (philo->dead > 0 || philo->eated == philo->n_philos)
-			{	
-				pthread_mutex_unlock(&philo->write);
-				break ;
-			}*/
 			usleep(100);
 		}
 	}
@@ -107,7 +99,7 @@ int	main(int argc, char **argv)
 {
 	t_philo_args	philo;
 
-	printf("%s %s %s %s\n", argv[1], argv[2], argv[3], argv[4]);
+	//printf("%s %s %s %s\n", argv[1], argv[2], argv[3], argv[4]);
 	if (get_args(argc, argv, &philo))
 		start(&philo);
 	//system("valgrind ./philo");

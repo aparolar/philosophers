@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 06:15:04 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/10 09:34:21 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	doing_eat(t_philo *philo);
 ** Print functions
 */
 
+void	print_status(t_philo *philo, char *status);
 void	show_status(t_philo *philo, char *status);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);

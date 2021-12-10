@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 06:16:17 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/10 08:37:53 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void    *philoso(void *args)
 	int	dead;
 
 	p = (t_philo *)args;
-	if (p->args->n_philos % 2)
+	if (p->position % 2)
 		usleep(500);
 	p->last_eat = timestamp();
 	dead = 0;

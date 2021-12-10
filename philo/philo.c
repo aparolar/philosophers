@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 06:01:18 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/10 09:37:07 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ static int	start(t_philo_args *args)
 			p = args->philos[i];
 			if (time_diff(p.last_eat, timestamp()) > args->dead_time)
 			{
-				show_status(&p, DIED);
 				pthread_mutex_lock(&args->write);
 				args->dead = 1;
 				pthread_mutex_unlock(&args->write);
+				usleep(500);
+				print_status(&p, DIED);
 			}
 			usleep(100);
 		}

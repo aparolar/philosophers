@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 17:19:29 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 22:28:14 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ void	doing_eat(t_philo *philo)
 
 void	do_sleep_and_think(t_philo *philo)
 {
-	if (philo->args->eated)
+	if (!philo->args->dead && philo->args->eated)
 		show_status(philo, SLEEP);
 	if (!cond_sleep(philo->args->sleep_time, philo->args)
+		&& !philo->args->dead
 		&& philo->args->eated)
 		show_status(philo, THINK);
 }

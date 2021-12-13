@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 09:37:07 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:34:09 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	get_args(int argc, char **argv, t_philo_args *philo)
 {
 	if (argc >= 5 && philo)
 	{
-		philo->n_philos = ft_atoi(argv[1]); 
+		philo->n_philos = ft_atoi(argv[1]);
 		philo->dead_time = ft_atoi(argv[2]);
 		philo->eat_time = ft_atoi(argv[3]);
 		philo->sleep_time = ft_atoi(argv[4]);
@@ -24,7 +24,7 @@ static int	get_args(int argc, char **argv, t_philo_args *philo)
 			philo->must_eat_count = ft_atoi(argv[5]);
 		else
 			philo->must_eat_count = 0;
-		if (philo->n_philos > 0 && philo->dead_time >= 6 
+		if (philo->n_philos > 0 && philo->dead_time >= 6
 			&& philo->eat_time >= 60 && philo->sleep_time >= 60)
 			return (1);
 	}
@@ -56,7 +56,7 @@ static void	initialize(t_philo_args *args)
 
 static void	uninitialize(t_philo_args *args)
 {
-	int i;
+	int	i;
 
 	i = args->n_philos;
 	while (args->n_philos > 0 && --i >= 0)
@@ -100,7 +100,6 @@ int	main(int argc, char **argv)
 {
 	t_philo_args	philo;
 
-	//printf("%s %s %s %s\n", argv[1], argv[2], argv[3], argv[4]);
 	if (get_args(argc, argv, &philo))
 		start(&philo);
 	//system("valgrind ./philo");

@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 09:34:21 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:32:10 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ typedef struct s_philo
 */
 
 void	init_philo(t_philo *philo);
-void    *philoso(void *args);
-void	take_forks(t_philo *philo);
-void	clean_forks(t_philo *philo);
+void	*philoso(void *args);
 void	doing_eat(t_philo *philo);
 
 /*
@@ -82,9 +80,9 @@ void	ft_putnbr_fd(int n, int fd);
 **  Time Functions
 */
 
-ulong	timestamp();
+ulong	timestamp(void);
 ulong	time_diff(ulong past, ulong present);
-void	cond_sleep(ulong time, t_philo_args *args);
+int		cond_sleep(ulong time, t_philo_args *args);
 
 /*
 ** Other functions

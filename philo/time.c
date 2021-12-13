@@ -6,13 +6,13 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:09:30 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 04:52:27 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:59:37 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-ulong   timestamp()
+ulong   timestamp(void)
 {
     struct timeval    t;
 
@@ -25,11 +25,14 @@ ulong   time_diff(ulong past, ulong present)
     return (present - past);
 }
 
-void    cond_sleep(ulong time, t_philo_args *args)
+int    cond_sleep(ulong time, t_philo_args *args)
 {
     ulong   t;
 
     t = timestamp() + time;
-    while (timestamp() < t)
-        usleep(100);
+    while (timestamp() < t && !args->dead)
+        usleep(50);
+    if (args->dead)
+        return (1);
+    return (0);
 }

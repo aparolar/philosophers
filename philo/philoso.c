@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 22:30:03 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 22:43:14 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	*philoso(void *args)
 	p->last_eat = timestamp();
 	while (!p->args->dead && p->args->eated)
 	{
-		usleep(200);
-		doing_eat(p);
+		if (!p->args->dead)
+			doing_eat(p);
 		p->eat_count++;
 		if (p->max_eat_count && p->eat_count == p->max_eat_count)
 		{		
@@ -45,6 +45,7 @@ void	*philoso(void *args)
 			pthread_mutex_unlock(&p->args->write);
 		}
 		do_sleep_and_think(p);
+		usleep(200);
 	}
 	return (0);
 }

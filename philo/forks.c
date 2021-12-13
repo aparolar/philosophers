@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 22:28:14 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 22:52:27 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->args->forks[philo->lfork]));
 	show_status(philo, FORK);
-	if (philo->lfork != philo->rfork)
+	if (philo->lfork != philo->rfork && !philo->args->dead)
 	{
 		pthread_mutex_lock(&(philo->args->forks[philo->rfork]));
 		show_status(philo, FORK);
@@ -37,7 +37,7 @@ static void	clean_forks(t_philo *philo)
 
 void	doing_eat(t_philo *philo)
 {
-	if (take_forks(philo))
+	if (!philo->args->dead && take_forks(philo))
 	{
 		show_status(philo, EAT);
 		if (!cond_sleep(philo->args->eat_time, philo->args))

@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 22:23:22 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 22:49:16 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	start(t_philo_args *args)
 				pthread_mutex_lock(&args->write);
 				args->dead = 1;
 				pthread_mutex_unlock(&args->write);
-				usleep(500);
+				usleep(100);
 				print_status(&p, DIED);
 			}
 			usleep(100);

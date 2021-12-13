@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 12:30:32 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/10 09:35:11 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:15:45 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_status(t_philo *philo, char *status)
 	ft_putstr_fd("\n", 1);
 }
 
-void    show_status(t_philo *philo, char *status)
+void	show_status(t_philo *philo, char *status)
 {
 	if (!philo->args->dead)
 	{

@@ -6,13 +6,13 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 15:33:12 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:18:57 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    init_philo(t_philo *philo)
+void	init_philo(t_philo *philo)
 {
 	int			ret;
 
@@ -38,7 +38,7 @@ void	*philoso(void *args)
 	while (!p->args->dead && p->args->eated < p->args->n_philos)
 	{
 		doing_eat(p);
-		if (p->max_eat_count > 0 && p->eat_count == p->max_eat_count)
+		if (p->max_eat_count > 0 && p->eat_count >= p->max_eat_count)
 		{		
 			pthread_mutex_lock(&p->args->write);
 			p->args->eated++;

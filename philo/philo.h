@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 15:32:10 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:43:28 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ typedef struct s_philo
 ** General functions
 */
 
-void	init_philo(t_philo *philo);
+int		init_philo(t_philo *philo);
 void	*philoso(void *args);
 void	doing_eat(t_philo *philo);
+void	do_sleep_and_think(t_philo *philo);
+int 	is_p_int(int n);
 
 /*
 ** Print functions

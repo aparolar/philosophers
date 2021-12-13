@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 16:18:21 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:54:22 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ static int	get_args(int argc, char **argv, t_philo_args *philo)
 		philo->dead_time = ft_atoi(argv[2]);
 		philo->eat_time = ft_atoi(argv[3]);
 		philo->sleep_time = ft_atoi(argv[4]);
-		if (argc > 5)
+		philo->must_eat_count = 0;
+		if (argc == 6)
 			philo->must_eat_count = ft_atoi(argv[5]);
-		else
-			philo->must_eat_count = 0;
-		if (philo->n_philos > 0 && philo->dead_time >= 6
-			&& philo->eat_time >= 60 && philo->sleep_time >= 60)
+		if (philo->n_philos > 0 
+			&& philo->dead_time >= 60
+			&& philo->eat_time >= 60 
+			&& philo->sleep_time >= 60
+			&& philo->must_eat_count >= 0)
 			return (1);
 	}
 	return (0);
@@ -39,7 +41,7 @@ static void	initialize(t_philo_args *args)
 	args->forks = malloc(sizeof(pthread_mutex_t) * args->n_philos);
 	args->philos = malloc(sizeof(t_philo) * args->n_philos);
 	args->dead = 0;
-	args->eated = 0;
+	args->eated = args->n_philos;
 	args->start = timestamp();
 	i = args->n_philos;
 	while (--i >= 0)
@@ -75,13 +77,13 @@ static int	start(t_philo_args *args)
 	t_philo		p;
 
 	initialize(args);
-	while (!args->dead && args->eated < args->n_philos)
+	while (!args->dead && args->eated)
 	{
 		i = args->n_philos;
-		while (--i >= 0 && !args->dead && args->eated < args->n_philos)
+		while (--i >= 0 && !args->dead && args->eated)
 		{
 			p = args->philos[i];
-			if (time_diff(p.last_eat, timestamp()) > args->dead_time)
+			if (time_diff(p.last_eat, timestamp()) > args->dead_time && args->eated)
 			{
 				pthread_mutex_lock(&args->write);
 				args->dead = 1;
@@ -102,6 +104,17 @@ int	main(int argc, char **argv)
 
 	if (get_args(argc, argv, &philo))
 		start(&philo);
+	else
+	{
+		printf("Error.\n");
+		printf("Command arguments are : \n");
+		printf("\tphilo n_philos dead_time eat_time sleep_time [must_eats]\n");
+		printf("\tn_philos must be greather of 0\n");
+		printf("\tdead_time,\n"); 
+		printf("\teat_time and\n");
+		printf("\tsleep_time : needs to be equal or greather of 60\n");
+		printf("\t[must_eats] is optional no negative numbers\n");
+	}
 	//system("valgrind ./philo");
 	return (0);
 }

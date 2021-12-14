@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 22:20:05 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:40:06 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int		init_philo(t_philo *philo);
 void	*philoso(void *args);
 void	doing_eat(t_philo *philo);
 void	do_sleep_and_think(t_philo *philo);
-int		is_p_int(int n);
 
 /*
 ** Print functions

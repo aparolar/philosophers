@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/12/14 10:48:36 by aparolar         ###   ########.fr        #
+#    Updated: 2021/12/14 10:52:40 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJS		=	$(SRCS:.c=.o)
 DBGFLAGS	=	-g3 -fsanitize=address#thread
 FLAGS		=	#-Wall -Werror -Wextra
 CC			=	@gcc
+GIT_MSG		=	"Update"
 
 $(NAME):	$(OBJS)
 			$(CC) $(FLAGS) $(DBGFLAGS) $(SRCS) -o $(NAME)
@@ -43,7 +44,7 @@ fclean:		clean
 git_push:	fclean
 			git add .
 			git status
-			git commit -m "Update $(shell date)"
+			git commit -m "$(GIT_MSG) $(shell date)"
 			git push
 
 .PHONY:		all re clean fclean

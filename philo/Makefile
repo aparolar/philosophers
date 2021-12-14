@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/12/14 10:48:09 by aparolar         ###   ########.fr        #
+#    Updated: 2021/12/14 10:48:36 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,6 @@ git_push:	fclean
 			git add .
 			git status
 			git commit -m "Update $(shell date)"
-			
+			git push
 
 .PHONY:		all re clean fclean

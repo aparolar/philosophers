@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/13 23:26:04 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:40:20 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	get_args(int argc, char **argv, t_philo_args *philo)
 		if (argc == 6)
 			philo->must_eat_count = ft_atoi(argv[5]);
 		if (philo->n_philos > 0
+			&& philo->n_philos <= 200
 			&& philo->dead_time >= 60
 			&& philo->eat_time >= 60
 			&& philo->sleep_time >= 60

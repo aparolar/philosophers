@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/12/14 10:52:40 by aparolar         ###   ########.fr        #
+#    Updated: 2021/12/14 14:04:01 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,15 @@ SRCS		=	philo.c\
 				ft_intlen.c\
 				
 OBJS		=	$(SRCS:.c=.o)
-DBGFLAGS	=	-g3 -fsanitize=address#thread
-FLAGS		=	#-Wall -Werror -Wextra
+DBGF		=	-g3
+DBGFA		=	$(DBGF) -fsanitize=address
+DBGFP		=	$(DBGF) -fsanitize=pthread
+FLAGS		=	-Wall -Werror -Wextra
 CC			=	@gcc
 GIT_MSG		=	"Update"
 
 $(NAME):	$(OBJS)
-			$(CC) $(FLAGS) $(DBGFLAGS) $(SRCS) -o $(NAME)
+			$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 all:		$(NAME)
 

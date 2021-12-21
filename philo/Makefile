@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/12/14 14:04:01 by aparolar         ###   ########.fr        #
+#    Updated: 2021/12/21 12:52:52 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,14 @@ SRCS		=	philo.c\
 				ft_putnbr_fd.c\
 				ft_putstr_fd.c\
 				ft_intlen.c\
+				ft_is_valid_aint.c\
+				start_end.c
 				
 OBJS		=	$(SRCS:.c=.o)
 DBGF		=	-g3
 DBGFA		=	$(DBGF) -fsanitize=address
 DBGFP		=	$(DBGF) -fsanitize=pthread
-FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra $(DBGFA)
 CC			=	@gcc
 GIT_MSG		=	"Update"
 

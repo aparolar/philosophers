@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/14 10:40:06 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:54:22 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		init_philo(t_philo *philo);
 void	*philoso(void *args);
 void	doing_eat(t_philo *philo);
 void	do_sleep_and_think(t_philo *philo);
+int		start(t_philo_args *args);
 
 /*
 ** Print functions
@@ -92,5 +93,6 @@ int		cond_sleep(t_ulong time, t_philo_args *args);
 int		ft_intlen(int n);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		ft_is_valid_aint(char *str);
 
 #endif

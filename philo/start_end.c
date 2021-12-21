@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:52:33 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 12:54:03 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:21:07 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	start(t_philo_args *args)
 		while (--i >= 0 && !args->dead && args->eated)
 		{
 			p = args->philos[i];
-			if (time_diff(p.last_eat, timestamp()) > args->dead_time
+			if ((int)time_diff(p.last_eat, timestamp()) > args->dead_time
 				&& args->eated)
 			{
 				pthread_mutex_lock(&args->write);

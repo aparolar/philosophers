@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 00:10:39 by aparolar          #+#    #+#             */
-/*   Updated: 2021/10/25 13:24:04 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:06:36 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	num *= sign;
-	return (num);
+	return ((int)num);
 }

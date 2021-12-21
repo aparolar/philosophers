@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:52 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 12:54:22 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:20:32 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef unsigned long	t_ulong;
 typedef struct s_philo_args
 {
 	int				n_philos;
-	t_ulong			dead_time;
-	t_ulong			eat_time;
-	t_ulong			sleep_time;
+	int				dead_time;
+	int				eat_time;
+	int				sleep_time;
 	int				must_eat_count;
 	int				eated;
 	t_ulong			start;

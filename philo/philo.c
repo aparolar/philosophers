@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 14:21:25 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 23:55:33 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 		printf("Error.\n");
 		printf("Command arguments are : \n");
 		printf("\tphilo n_philos dead_time eat_time sleep_time [must_eats]\n");
-		printf("\tn_philos must be greather of 0\n");
+		printf("\tn_philos must be greather of 0 and minor or equal of 200\n");
 		printf("\tdead_time,\n");
 		printf("\teat_time and\n");
 		printf("\tsleep_time : needs to be equal or greather of 60\n");

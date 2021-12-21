@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 11:53:45 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 13:53:30 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:28:09 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,14 @@ int	ft_is_valid_aint(char *str)
 
 	tstr = str;
 	cstr = AINT_MAX;
-	if (*tstr == '-')
-		cstr = &AINT_MIN[1];
-	if (*tstr == '-')
+	if (*tstr != '+')
+	{
+		if (*tstr == '-')
+			cstr = &AINT_MIN[1];
+		if (*tstr == '-')
+			tstr++;
+	}
+	else
 		tstr++;
 	if (ft_strlen(tstr) <= ft_strlen(cstr)
 		&& all_digit(tstr)

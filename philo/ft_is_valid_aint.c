@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 11:53:45 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 12:40:30 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/21 13:53:30 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	all_digit(char *str)
 {
 	while (*str)
 	{
-		if (*str < '0' && *str > '9')
+		if (*str < '0' || *str > '9')
 			return (0);
 		str++;
 	}

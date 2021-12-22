@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 11:53:45 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/22 00:09:41 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/22 11:22:11 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	ft_is_valid_aint(char *str)
 	char	*tstr;
 	char	*cstr;
 
+	if (!tstr)
+		return (0);
 	tstr = str;
 	cstr = AINT_MAX;
 	if (*tstr == '+' || *tstr == '-')

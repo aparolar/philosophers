@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 11:53:45 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/22 11:22:11 by aparolar         ###   ########.fr       */
+/*   Updated: 2021/12/24 00:06:31 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,20 @@ static	int	inside_limit(char *str, char *limit)
 
 int	ft_is_valid_aint(char *str)
 {
-	char	*tstr;
 	char	*cstr;
 
-	if (!tstr)
+	if (!str)
 		return (0);
-	tstr = str;
 	cstr = AINT_MAX;
-	if (*tstr == '+' || *tstr == '-')
+	if (*str == '+' || *str == '-')
 	{
-		if (*tstr == '-')
+		if (*str == '-')
 			cstr = &AINT_MIN[1];
-		tstr++;
+		str++;
 	}
-	if (ft_strlen(tstr) <= ft_strlen(cstr)
-		&& all_digit(tstr)
-		&& inside_limit(tstr, cstr))
+	if (ft_strlen(str) <= ft_strlen(cstr)
+		&& all_digit(str)
+		&& inside_limit(str, cstr))
 		return (1);
-	else
-		return (0);
+	return (0);
 }

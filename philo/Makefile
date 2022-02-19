@@ -6,7 +6,7 @@
 #    By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 11:45:45 by aparolar          #+#    #+#              #
-#    Updated: 2021/12/21 12:52:52 by aparolar         ###   ########.fr        #
+#    Updated: 2022/02/18 12:50:35 by aparolar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS		=	philo.c\
 OBJS		=	$(SRCS:.c=.o)
 DBGF		=	-g3
 DBGFA		=	$(DBGF) -fsanitize=address
-DBGFP		=	$(DBGF) -fsanitize=pthread
+DBGFP		=	$(DBGF) -fsanitize=thread
 FLAGS		=	-Wall -Werror -Wextra $(DBGFA)
 CC			=	@gcc
 GIT_MSG		=	"Update"

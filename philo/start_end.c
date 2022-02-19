@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:52:33 by aparolar          #+#    #+#             */
-/*   Updated: 2021/12/21 14:21:07 by aparolar         ###   ########.fr       */
+/*   Updated: 2022/02/19 11:48:48 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ int	start(t_philo_args *args)
 				pthread_mutex_unlock(&args->write);
 				usleep(100);
 				print_status(&p, DIED);
-			}
+			}/*
+			else if (!args->eated)
+			{
+				pthread_mutex_lock(&args->write);
+				args->dead = 1;
+				pthread_mutex_unlock(&args->write);
+				break ;
+			}	*/	
 			usleep(100);
 		}
 	}

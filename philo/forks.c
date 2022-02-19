@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:20:39 by aparolar          #+#    #+#             */
-/*   Updated: 2022/02/19 11:11:57 by aparolar         ###   ########.fr       */
+/*   Updated: 2022/02/19 12:19:19 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	doing_eat(t_philo *philo)
 		}
 		philo->last_eat = timestamp();
 	}
-	else
-		clean_forks(philo);
+	//else
+	//	clean_forks(philo);
 }
 
 void	do_sleep_and_think(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:26:08 by aparolar          #+#    #+#             */
-/*   Updated: 2022/02/19 12:15:36 by aparolar         ###   ########.fr       */
+/*   Updated: 2022/02/19 12:27:51 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	*philoso(void *args)
 	{
 		if (!p->args->dead)
 			doing_eat(p);
+		else
+			break ;
 		p->eat_count++;
 		if (p->max_eat_count && p->eat_count == p->max_eat_count)
 		{

@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:09:30 by aparolar          #+#    #+#             */
-/*   Updated: 2022/02/19 11:42:22 by aparolar         ###   ########.fr       */
+/*   Updated: 2022/02/19 12:30:32 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	cond_sleep(t_ulong time, t_philo_args *args)
 
 	t = timestamp() + time;
 	while (timestamp() < t && !args->dead)
-		usleep(500);
+		usleep(50);
 	if (args->dead || !args->eated)
 		return (1);
 	return (0);

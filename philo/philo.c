@@ -6,7 +6,7 @@
 /*   By: aparolar <aparolar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:36:21 by aparolar          #+#    #+#             */
-/*   Updated: 2022/02/19 12:39:42 by aparolar         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:53:46 by aparolar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	main(int argc, char **argv)
 		printf("\tsleep_time : needs to be equal or greather of 60\n");
 		printf("\t[must_eats] is optional no negative numbers\n");
 	}
-	system("leaks philo");
 	return (0);
 }
